@@ -1,8 +1,9 @@
-import React from 'react'
+import FoodImg from '../../../src/assets/Food pic.webp'
+import FoodBg from '../../../src/assets/FoodBG3.jpg'
 
 function LandingBanners() {
   return (
-    <div className='px-[100px] py-[60px] flex justify-between bg-orange-100'>
+    <div className='px-[100px] py-[60px] flex justify-between gap-10 bg-orange-100 bg-cover bg-center' style={{ backgroundImage: `url(${FoodBg})`}}>
     
         <div className='flex flex-col gap-8 items-start'>
           <button className='bg-white px-3 py-2 rounded-3xl font-semibold'>Fast Delivery</button>
@@ -31,7 +32,9 @@ function LandingBanners() {
             
           </div>
           </div>
-        <div className='flex justify-center items-center'>Image</div>
+        <div className='flex justify-center items-center'>
+          <img className='rounded-xl h-[350px] bg-transparent' src={FoodImg} alt="Food Image" />
+        </div>
 
     </div>
   )
