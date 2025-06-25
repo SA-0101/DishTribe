@@ -1,10 +1,11 @@
-import React from 'react'
 import Navbar from './Navbar'
+import LandingBanners from '../LandingPage/LandingBanners'
 
 function Landing() {
   return (
-    <div className='px-[80px]'>
+    <div>
       <Navbar/>
+      <LandingBanners/>
     </div>
   )
 }
