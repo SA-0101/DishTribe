@@ -57,7 +57,7 @@ function App() {
         </Route>
 
         {/* Catch-all route for 404 */}
-        <Route path="*" element={<NotFound />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
 
       </Routes>
     </BrowserRouter>
