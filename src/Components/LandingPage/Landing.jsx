@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 function Landing() {
   return (
-    <div>
-      Landing Page
+    <div className='px-[80px]'>
+      <Navbar/>
     </div>
   )
 }
