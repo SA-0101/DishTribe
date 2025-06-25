@@ -2,8 +2,15 @@ import React from 'react'
 
 function Navbar() {
   return (
-    <div>
-        Navbar
+    <div >
+        
+        <h1>Logo</h1>
+        <h1>Location</h1>
+        <div>
+          <button>Guest</button>
+          <button>Login</button>
+        </div>
+
     </div>
   )
 }
