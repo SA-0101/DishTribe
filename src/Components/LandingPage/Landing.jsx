@@ -1,6 +1,7 @@
 import Navbar from './Navbar'
 import LandingBanners from '../LandingPage/LandingBanners'
 import NearestRestourents from './NearestRestourents'
+import FoodCategory from '../LandingPage/FoodCategory'
 
 function Landing() {
   return (
@@ -8,6 +9,7 @@ function Landing() {
       <Navbar/>
       <LandingBanners/>
       <NearestRestourents/>
+      <FoodCategory/>
     </div>
   )
 }

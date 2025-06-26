@@ -17,7 +17,7 @@ function NearestRestourents() {
           </div>
         </div>
         <div className='flex flex-col gap-4 bg-green-100'>
-          <h1>Nearest Restaurants</h1>
+          <h1 className='text-xl font-semibold'>Nearest Restaurants</h1>
           <div className='flex gap-5'>
             <h1>Restaurant 1</h1>
             <h1>Restaurant 2</h1>
