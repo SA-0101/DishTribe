@@ -17,7 +17,7 @@ function FoodCategory() {
                 <button className='bg-gray-100 rounded-3xl px-4 py-1'>1 items Found</button>
               </div>
               <div className='w-[250px] h-[350px] rounded-xl bg-yellow-50'>
-              <img src="" alt="pic" />
+              <img src={null} alt="pic" />
             
             <div className='flex flex-col gap-2 px-3 py-3'>
 
