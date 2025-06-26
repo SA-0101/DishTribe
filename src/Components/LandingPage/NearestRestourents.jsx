@@ -22,7 +22,7 @@ function NearestRestourents() {
             <div className='w-[250px] h-[350px] rounded-xl bg-yellow-50'>
               <img src="" alt="pic" />
             
-            <div className='flex flex-col gap-2 px-3 py-3'>
+            <div className='flex flex-col gap-2 px-3 py-5'>
 
               <div className='flex justify-between'>
                 <h1>Restaurant name</h1>
@@ -39,7 +39,7 @@ function NearestRestourents() {
               </div>
             </div>
             </div>
-            <h1>Restaurant 2</h1>
+
           </div>
         </div>
         
