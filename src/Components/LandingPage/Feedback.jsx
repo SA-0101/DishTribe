@@ -7,12 +7,12 @@ function Feedback() {
           <h1 className='text-2xl font-semibold'>What Our Customers Say</h1>
           <h1>Read reviews from our satisfied customers</h1>
         </div>
-      <div className='flex gap-3 bg-blue-50'>
-        <div className='w-[300px] h-[100px] rounded-xl bg-red-100'>
+      <div className='flex gap-3 flex-wrap justify-center py-7 bg-blue-50'>
+        <div className='min-w-[300px] min-h-[100px] basis-1 rounded-xl bg-red-100'>
           Feedback1
         </div>
 
-         <div className='w-[300px] h-[100px] rounded-xl bg-red-100'>
+         <div className='min-w-[300px] min-h-[100px] rounded-xl bg-red-100'>
           Feedback2
         </div>
       </div>
