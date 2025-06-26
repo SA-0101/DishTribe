@@ -16,9 +16,22 @@ function FoodCategory() {
                 <h1 className='text-xl font-semibold'>Vegetarian Dishes</h1>
                 <button className='bg-gray-100 rounded-3xl px-4 py-1'>1 items Found</button>
               </div>
-              <div className='py-5'>
-                Items
+              <div className='w-[250px] h-[350px] rounded-xl bg-yellow-50'>
+              <img src="" alt="pic" />
+            
+            <div className='flex flex-col gap-2 px-3 py-3'>
+
+              <div className='flex justify-between'>
+                <h1>Food name</h1>
               </div>
+              <h1>Food Description</h1>
+          
+              <div className='flex justify-between'>
+                <h1>Old Price cut, new price</h1>
+                <h1 className='px-2 py-1 rounded-lg text-white font-semibold bg-orange-500'>new price</h1>
+              </div>
+            </div>
+            </div>
         </div>
     </div>
   )
