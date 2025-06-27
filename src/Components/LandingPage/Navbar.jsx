@@ -18,7 +18,10 @@ function Navbar() {
         <div className='flex items-center gap-4 mt-2 md:mt-0'>
           <h1 className='text-gray-700 font-semibold'>{name}</h1>
           <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Orders</button>
-          <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Cart</button>
+          <NavLink to="/Cart">
+                   <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Cart</button>
+          </NavLink>
+         
           <button onClick={()=>{ localStorage.removeItem('name'),localStorage.removeItem('email'),localStorage.removeItem('role');navigate('/');}} className='px-4 py-2 text-sm font-semibold text-white bg-red-400 hover:bg-red-500 rounded-md transition duration-300 shadow'>Logout</button>
         </div>
       </div>
