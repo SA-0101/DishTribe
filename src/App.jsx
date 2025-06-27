@@ -3,10 +3,13 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import Landing from '../src/Components/LandingPage/Landing'
+import Main from './Components/LandingPage/Main';
+import ResProfile from '../src/Components/Restaurant Profile/ResProfile/'
 import Register from '../src/Components/Auth/Register'
 import Login from '../src/Components/Auth/Login'
 
 import Cart from '../src/Components/Customer Section/Cart'
+import InfoInvoice from './Components/Customer Section/InfoInvoice';
 import MyOrders from '../src/Components/Customer Section/MyOrders'
 
 import OwnerDashboard from './Components/Owner Section/OwnerDashboard';
@@ -20,8 +23,8 @@ import Analytics from './Components/Admin Section/Analysis';
 import RestaurantsManagement from './Components/Admin Section/RestaurantsManagement';
 import UserManagement from './Components/Admin Section/UserManagement';
 import OrdersManagement from './Components/Admin Section/OrdersManagement';
-import Main from './Components/LandingPage/Main';
-import ResProfile from '../src/Components/Restaurant Profile/ResProfile/'
+
+
 
 
 function App() {
@@ -33,6 +36,7 @@ function App() {
         <Route path="/" element={<Main />} >
         <Route index element={<Landing/>}/>
         <Route path='/Cart' element={<Cart/>}/>
+        <Route path='/InfoInvoice' element={<InfoInvoice/>}/>
         <Route path='/CustomerOrders' element={<MyOrders/>}/>
         <Route path='/RestaurantProfile' element={<ResProfile/>}/>
         <Route path="/Register" element={<Register />} />
