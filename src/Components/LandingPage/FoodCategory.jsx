@@ -1,40 +1,129 @@
-// import React from 'react'
+import { useState,useEffect } from "react";
 
 function FoodCategory() {
-  return (
-    <div className='flex flex-col gap-10 px-16 py-3'>
-        <div className='flex flex-col items-center gap-4'>
-          <h1 className='text-3xl font-semibold'>Food Categories</h1>
-          <h1>Choose from our delicious vegetarian and non-vegetarian dishes</h1>
-        </div>
-        <div className='flex justify-center items-center'>
-          <button className='px-10 py-3 font-semibold bg-gray-200 rounded-3xl cursor-pointer'>Vegetarian</button>
-          <button className='px-8 py-3 font-semibold bg-red-500 rounded-3xl ml-[-20px] cursor-pointer'>Non-Vegetarian</button>
-          </div>
-        <div className='flex flex-col gap-5'>
-              <div className='flex justify-between'>
-                <h1 className='text-xl font-semibold'>Vegetarian Dishes</h1>
-                <button className='bg-gray-100 rounded-3xl px-4 py-1'>1 items Found</button>
-              </div>
-              <div className='w-[250px] h-[350px] rounded-xl bg-yellow-50'>
-              <img src={null} alt="pic" />
-            
-            <div className='flex flex-col gap-2 px-3 py-3'>
 
-              <div className='flex justify-between'>
-                <h1>Food name</h1>
-              </div>
-              <h1>Food Description</h1>
-          
-              <div className='flex justify-between'>
-                <h1>Old Price cut, new price</h1>
-                <h1 className='px-2 py-1 rounded-lg text-white font-semibold bg-orange-500'>new price</h1>
-              </div>
-            </div>
-            </div>
-        </div>
+  const BASE_URL= "http://localhost:8000/app"
+  const role=localStorage.getItem('role')
+  const token=localStorage.getItem('token')
+  const [food,setFood]=useState([])
+  const [category,setCategory]=useState("veg")
+  console.log(category)
+  console.log(food)
+  
+  const Foodcategory= food.filter((food)=>{
+     return food.category===category
+  })
+  console.log(Foodcategory)
+
+  const getFood= async () => {
+  
+      try {
+        const response = await fetch(`${BASE_URL}/getAllFoods`, {
+          method: "GET",
+          headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+        },
+        });
+  
+  
+        const responsedata = await response.json();
+  
+        if (response.ok) {
+          alert("API Fetched")
+          setFood(responsedata.foods);
+        } else {
+          console.log(responsedata.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+  
+    useEffect(()=>{
+      getFood()
+    },[])
+
+  return (
+  <div className="flex flex-col gap-10 px-4 md:px-16 py-6">
+    {/* Header */}
+    <div className="flex flex-col items-center gap-3 text-center">
+      <h1 className="text-3xl font-semibold">Food Categories</h1>
+      <p className="text-gray-600">
+        Choose from our delicious vegetarian and non-vegetarian dishes
+      </p>
     </div>
-  )
+
+    {/* Category Buttons */}
+    <div className="flex justify-center gap-4">
+      <button
+        onClick={() => setCategory("veg")}
+        className="px-8 py-3 font-semibold bg-gray-200 rounded-3xl cursor-pointer hover:bg-gray-300"
+      >
+        Vegetarian
+      </button>
+      <button
+        onClick={() => setCategory("non-veg")}
+        className="px-8 py-3 font-semibold bg-red-500 text-white rounded-3xl cursor-pointer hover:bg-red-600"
+      >
+        Non-Vegetarian
+      </button>
+    </div>
+
+    {/* Category Section */}
+    <div className="flex flex-col gap-6">
+      {/* Section Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+        <h2 className="text-2xl font-bold text-gray-800">
+          {category === "veg" ? "Vegetarian Dishes" : "Non Vegetarian Dishes"}
+        </h2>
+        <button className="bg-gray-100 text-sm text-gray-700 rounded-full px-4 py-2 shadow-sm">
+          {Foodcategory.length} items found
+        </button>
+      </div>
+
+      {/* Food Cards */}
+      <div className="flex flex-wrap gap-6 justify-start">
+        {Foodcategory.length === 0 ? (
+          <div className="text-gray-500">No Dishes found</div>
+        ) : (
+          Foodcategory.map((Fooditm, index) => (
+            <div
+              key={index}
+              className="w-full sm:w-[240px] md:w-[260px] bg-yellow-50 rounded-xl overflow-hidden shadow hover:shadow-md transition"
+            >
+              <img
+                src={Fooditm.img}
+                alt="pic"
+                className="w-full h-40 object-cover"
+              />
+              <div className="flex flex-col gap-2 px-4 py-4">
+                <h2 className="text-lg font-semibold text-gray-800">
+                  {Fooditm.foodName}
+                </h2>
+                <p className="text-sm text-gray-600 line-clamp-2">
+                  {Fooditm.description}
+                </p>
+                <div className="flex justify-between items-center mt-2">
+                  <del className="text-sm text-gray-500">
+                    ${Fooditm.oldPrice}
+                  </del>
+                  <span className="px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-md">
+                    ${Fooditm.newPrice}
+                  </span>
+                </div>
+                {
+                  role=="customer"? <button className="bg-orange-400 py-1 rounded-lg text-white font-semibold cursor-pointer">Add To Cart</button>: 
+                        null }
+               
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  </div>
+);
 }
 
 export default FoodCategory
