@@ -105,7 +105,6 @@ useEffect(()=>{
     const data = await response.json();
 
     if (response.ok) {
-      alert("✅ Data posted successfully")
       console.log('✅ Data posted successfully:', data);
     } else {
       alert('❌ Error from server:', data.message || 'Unknown error')

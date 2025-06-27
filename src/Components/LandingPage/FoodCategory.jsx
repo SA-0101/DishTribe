@@ -32,7 +32,6 @@ function FoodCategory() {
         const responsedata = await response.json();
   
         if (response.ok) {
-          alert("API Fetched")
           setFood(responsedata.foods);
         } else {
           console.log(responsedata.message);
@@ -76,7 +75,7 @@ function FoodCategory() {
       const responsedata = await response.json();
       
       if (response.ok) { 
-        alert("Food Add to Cart")
+        alert("Product Add to Cart")
       }
       else{
         alert(responsedata.message)

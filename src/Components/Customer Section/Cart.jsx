@@ -13,8 +13,6 @@ function Cart() {
     const [cartdata,setCartdata]=useState([]);
     console.log(cartdata)
 
-    // let storedUser = localStorage.getItem('user');
-    // const user = storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
     const token=localStorage.getItem('token')
 
     const [delcharges,setDelcharges]=useState("3")
@@ -33,9 +31,8 @@ function Cart() {
         
         const responsedata = await response.json();
         setCartdata(responsedata.items);  // Store the fetched data in state
-        console.log(responsedata)
         if (response.ok) {
-          console.log("Card data fetched Successfully!!")
+          console.log("data fetched")
         }
         else{
             setCartdata([])
@@ -95,7 +92,6 @@ const incrementquantityApi = async (product) => {
     const responsedata = await response.json();
 
     if (response.ok) {
-      alert("Incremented");
       getCartdata()
     } else {
       alert("Failed");
@@ -119,8 +115,9 @@ const decrementquantityApi = async (product) => {
     const responsedata = await response.json();
 
     if (response.ok) {
-      alert("decremented");
+
       getCartdata()
+    
     } else {
       alert("Failed");
     }

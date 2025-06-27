@@ -57,7 +57,6 @@ const getNearestres = async (latitude, longitude) => {
       const responsedata = await response.json();
 
       if (response.ok) {
-        alert("API Fetched")
         setNearestres(responsedata.restaurants);
       } else {
         alert(responsedata.message);
