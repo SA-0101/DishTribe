@@ -5,6 +5,8 @@ function FoodCategory() {
   const BASE_URL= "http://localhost:8000/app"
   const role=localStorage.getItem('role')
   const token=localStorage.getItem('token')
+  const userId=localStorage.getItem('userId')
+  console.log("userid "+userId)
   const [food,setFood]=useState([])
   const [category,setCategory]=useState("veg")
   console.log(category)
@@ -43,6 +45,49 @@ function FoodCategory() {
     useEffect(()=>{
       getFood()
     },[])
+
+     const addtocart = async (Fooditem) => {
+        
+          const cartItem = {
+
+            userId:userId,
+            _id: Fooditem._id,
+            foodName: Fooditem.foodName,
+            restaurantId:Fooditem.restaurantId,
+            category:Fooditem.category,
+            img:Fooditem.img,
+            description: Fooditem.description,
+            oldPrice: Fooditem.oldPrice,
+            newPrice: Fooditem.newPrice,
+          };
+
+          try {
+      const response = await fetch(`${BASE_URL}/addToOrder`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+         'Authorization': `Bearer ${token}`
+
+        },
+        body: JSON.stringify(cartItem),
+      });
+      console.log("Sending data:", JSON.stringify(Fooditem));
+
+      const responsedata = await response.json();
+      
+      if (response.ok) { 
+        alert("Food Add to Cart")
+      }
+      else{
+        alert(responsedata.message)
+      }
+
+      // console.log("your added item is", responsedata.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+      }
 
   return (
   <div className="flex flex-col gap-10 px-4 md:px-16 py-6">
@@ -113,7 +158,7 @@ function FoodCategory() {
                   </span>
                 </div>
                 {
-                  role=="customer"? <button className="bg-orange-400 py-1 rounded-lg text-white font-semibold cursor-pointer">Add To Cart</button>: 
+                  role=="customer"? <button onClick={()=>{addtocart(Fooditm)}} className="bg-orange-400 py-1 rounded-lg text-white font-semibold cursor-pointer">Add To Cart</button>: 
                         null }
                
               </div>
