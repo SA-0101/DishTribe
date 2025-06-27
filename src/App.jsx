@@ -21,6 +21,7 @@ import RestaurantsManagement from './Components/Admin Section/RestaurantsManagem
 import UserManagement from './Components/Admin Section/UserManagement';
 import OrdersManagement from './Components/Admin Section/OrdersManagement';
 import Main from './Components/LandingPage/Main';
+import ResProfile from '../src/Components/Restaurant Profile/ResProfile/'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route index element={<Landing/>}/>
         <Route path='/CustomerFav' element={<Cart/>}/>
         <Route path='/CustomerOrders' element={<MyOrders/>}/>
+        <Route path='/RestaurantProfile' element={<ResProfile/>}/>
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         </Route>
