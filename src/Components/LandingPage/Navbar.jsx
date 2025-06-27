@@ -1,14 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
+
   const role = localStorage.getItem('role');
   const name=localStorage.getItem('name')
   const navigate = useNavigate();
-  console.log(role);
-
-  console.log(name)
-
-
 
   if (role === "customer") {
     return (
@@ -17,7 +13,11 @@ function Navbar() {
         <h1 className='text-sm md:text-base text-gray-600 italic'>Your Location</h1>
         <div className='flex items-center gap-4 mt-2 md:mt-0'>
           <h1 className='text-gray-700 font-semibold'>{name}</h1>
-          <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Orders</button>
+          
+          <NavLink to="/CustomerOrders">
+                 <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Orders</button>
+          </NavLink>
+         
           <NavLink to="/Cart">
                    <button className='px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 rounded-md transition duration-300 shadow'>Cart</button>
           </NavLink>
