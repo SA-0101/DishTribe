@@ -7,6 +7,18 @@ function Login() {
      const BASE_URL="http://localhost:8000/app"
     
      const navigate=useNavigate()
+     const [role,setRole]=useState("")
+
+
+     if(role=="customer"){
+      navigate('/')
+     }
+     else if(role==="owner"){
+      navigate('/OwnerDashboard')
+     }
+     else if(role=="admin"){
+      navigate('/AdminDashboard')
+     }
 
     // const [studentbg,setStudentbg]=useState('bg-blue-100')
     // const [teacherbg,setTeacherbg]=useState("white")
@@ -32,7 +44,8 @@ function Login() {
         const response = await fetch(`${BASE_URL}/login`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify(loginData)
         });
@@ -42,6 +55,8 @@ function Login() {
         if (response.ok) {
           alert('✅ Login Successfully!');
           console.log(data)
+          setRole(data.user.role)
+
           // localStorage.setItem('data',JSON.stringify(data))
           // localStorage.setItem('token',data.token)
           // localStorage.setItem('studentname',data.student.studentName)
