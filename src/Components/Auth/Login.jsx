@@ -10,16 +10,6 @@ function Login() {
      const [role,setRole]=useState("")
 
 
-     if(role=="customer"){
-      navigate('/')
-     }
-     else if(role==="owner"){
-      navigate('/OwnerDashboard')
-     }
-     else if(role=="admin"){
-      navigate('/AdminDashboard')
-     }
-
     // const [studentbg,setStudentbg]=useState('bg-blue-100')
     // const [teacherbg,setTeacherbg]=useState("white")
     // const [adminbg,setAdminbg]=useState("white")
@@ -55,7 +45,8 @@ function Login() {
         if (response.ok) {
           alert('✅ Login Successfully!');
           console.log(data)
-          setRole(data.user.role)
+          localStorage.setItem('role', data.user.role)
+          navigate('/')
 
           // localStorage.setItem('data',JSON.stringify(data))
           // localStorage.setItem('token',data.token)
