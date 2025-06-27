@@ -1,5 +1,7 @@
 // import React from 'react'
 
+import { NavLink } from "react-router-dom";
+
 // function Navbar() {
 //   return (
 //     <div className='flex justify-between items-center px-[80px] py-[15px]'>
@@ -25,9 +27,12 @@ function Navbar() {
   <h1 className='text-sm md:text-base text-gray-700'>Location</h1>
   <div className='flex gap-2 md:gap-4 mt-2 md:mt-0'>
     <button className='text-sm md:text-base font-medium text-gray-600'>Guest</button>
-    <button className='px-4 py-2 font-bold text-white bg-orange-400 hover:bg-orange-500 rounded-lg transition'>
-      Login
-    </button>
+   <NavLink to="/Login">
+         <button className='px-4 py-2 font-bold text-white bg-orange-400 hover:bg-orange-500 rounded-lg transition'>
+              Login
+         </button>
+   </NavLink>
+   
   </div>
 </div>
 

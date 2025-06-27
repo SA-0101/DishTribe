@@ -77,128 +77,141 @@ const getNearestres = async (latitude, longitude) => {
   if (!coords.latitude || !coords.longitude)
     return <div>Fetching your location...</div>;
 
-  return (
-    <div className='flex flex-col gap-10 px-16 py-12'>
-        <div className='flex flex-col items-center gap-4'>
-          <h1 className='text-2xl font-semibold'>Nearby Restaurants</h1>
-          <h1>Discover delicious food within 1km of your location</h1>
-        </div>
-        <div className='bg-blue-50 rounded-lg'>
-          <div className='px-4 py-4 rounded-tr-lg rounded-tl-lg bg-yellow-100 w-full h-full'>
-            <h1 className='font-semibold'>Map View</h1>
-            <h1>Your location and nearby restaurants</h1>
-          </div>
+  // return (
+  //   <div className='flex flex-col gap-10 px-16 py-12'>
+  //       <div className='flex flex-col items-center gap-4'>
+  //         <h1 className='text-2xl font-semibold'>Nearby Restaurants</h1>
+  //         <h1>Discover delicious food within 1km of your location</h1>
+  //       </div>
+  //       <div className='bg-blue-50 rounded-lg'>
+  //         <div className='px-4 py-4 rounded-tr-lg rounded-tl-lg bg-yellow-100 w-full h-full'>
+  //           <h1 className='font-semibold'>Map View</h1>
+  //           <h1>Your location and nearby restaurants</h1>
+  //         </div>
       
-             <div>
-                <h2>Your Current Location on Map</h2>
-                <iframe
-                  title="User Location"
-                  width="100%"
-                  height="400"
-                  src={mapUrl}
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                ></iframe>
-              </div>
+  //            <div>
+  //               <h2>Your Current Location on Map</h2>
+  //               <iframe
+  //                 title="User Location"
+  //                 width="100%"
+  //                 height="400"
+  //                 src={mapUrl}
+  //                 style={{ border: 0 }}
+  //                 allowFullScreen
+  //                 loading="lazy"
+  //               ></iframe>
+  //             </div>
           
-        </div>
-        <div className='flex flex-col gap-4 bg-green-100'>
-          <h1 className='text-xl font-semibold'>Nearest Restaurants</h1>
+  //       </div>
+  //       <div className='flex flex-col gap-4 bg-green-100'>
+  //         <h1 className='text-xl font-semibold'>Nearest Restaurants</h1>
           
-          <div className='flex gap-5 px-5 py-5'>
-            {
-              nearestres.length==0? <div>No Near Restourant found</div> :
-              nearestres.map((res,index)=>{
-                return <div key={index} className='rounded-xl bg-yellow-50'>
-              <img src={res.img} alt="pic" />
+  //         <div className='flex gap-5 px-5 py-5'>
+  //           {
+  //             nearestres.length==0? <div>No Near Restourant found</div> :
+  //             nearestres.map((res,index)=>{
+  //               return <div key={index} className='rounded-xl bg-yellow-50'>
+  //             <img src={res.img} alt="pic" />
             
             
-            <div className='flex flex-col gap-2 px-3 py-5'>
+  //           <div className='flex flex-col gap-2 px-3 py-5'>
 
-              <div className='flex justify-between'>
-                <h1>{res.restaurantName}</h1>
-                <h1>{res.rating}</h1>
-              </div>
-              <h1>{res.description}</h1>
-              <div className='flex justify-between'>
-                <h1>{res.address}</h1>
-                <h1>Time take by order</h1>
-              </div>
-              <div className='flex justify-between'>
-                <h1>Delivery Free</h1>
-                <button className='px-2 py-1 rounded-lg text-white font-semibold bg-orange-500'>View Details</button>
-              </div>
-            </div>
-             </div>
-              })
-            }
+  //             <div className='flex justify-between'>
+  //               <h1>{res.restaurantName}</h1>
+  //               <RatingStars rating={res.rating}/>
+  //             </div>
+  //             <h1>{res.description}</h1>
+  //             <div className='flex justify-between'>
+  //               <h1>{res.address}</h1>
+  //               <h1>Time take by order</h1>
+  //             </div>
+  //             <div className='flex justify-between'>
+  //               <h1>Delivery Free</h1>
+  //               <button className='px-2 py-1 rounded-lg text-white font-semibold bg-orange-500'>View Details</button>
+  //             </div>
+  //           </div>
+  //            </div>
+  //             })
+  //           }
 
-          </div>
-        </div>
+  //         </div>
+  //       </div>
         
+  //   </div>
+  // )
+
+return (
+  <div className="flex flex-col gap-12 px-4 py-8 md:px-16 md:py-12 bg-gray-50 min-h-screen">
+    
+    {/* Header */}
+    <div className="text-center flex flex-col items-center gap-2">
+      <h1 className="text-4xl font-extrabold text-gray-800">Nearby Restaurants</h1>
+      <p className="text-lg text-gray-500">Discover delicious food within 1km of your location</p>
     </div>
-  )
 
+    {/* Map Section */}
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+      <div className="bg-gradient-to-r from-yellow-200 to-yellow-100 px-6 py-4">
+        <h2 className="text-xl font-semibold text-gray-800">Map View</h2>
+        <p className="text-sm text-gray-600">Your location and nearby restaurants</p>
+      </div>
+      <div className="p-5">
+        <h2 className="text-lg font-medium text-gray-700 mb-3">Your Current Location on Map</h2>
+        <iframe
+          title="User Location"
+          width="100%"
+          height="400"
+          src={mapUrl}
+          className="rounded-xl border border-gray-300 shadow-sm"
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
 
-//   return (
-//    <div className="flex flex-col gap-10 px-6 sm:px-10 md:px-16 py-12">
-//   <div className="flex flex-col items-center gap-2 text-center">
-//     <h1 className="text-2xl md:text-3xl font-semibold text-orange-700">Nearby Restaurants</h1>
-//     <p className="text-gray-600">Discover delicious food within 1km of your location</p>
-//   </div>
+    {/* Restaurant Cards */}
+    <div className="bg-white rounded-2xl shadow-lg px-6 py-8 flex flex-col gap-6">
+      <h2 className="text-2xl font-bold text-gray-800 border-b pb-2">Nearest Restaurants</h2>
 
-//   <div className="bg-blue-50 rounded-lg overflow-hidden shadow-md">
-//     <div className="px-4 py-4 bg-yellow-100">
-//       <h1 className="font-semibold text-gray-800">Map View</h1>
-//       <p className="text-sm text-gray-600">Your location and nearby restaurants</p>
-//     </div>
-//     <div className="w-full">
-//       <iframe
-//         title="User Location"
-//         className="w-full h-[300px] sm:h-[400px]"
-//         src={mapUrl}
-//         style={{ border: 0 }}
-//         allowFullScreen
-//         loading="lazy"
-//       ></iframe>
-//     </div>
-//   </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          nearestres.length === 0 ? (
+            <div className="text-gray-500 col-span-full text-center">No Nearby Restaurants Found</div>
+          ) : (
+            nearestres.map((res, index) => (
+              <div key={index} className="bg-yellow-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-1 duration-300">
+                <img src={res.img} alt="Restaurant" className="w-full h-48 object-cover" />
+                <div className="p-5 flex flex-col gap-3">
+                  
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-gray-800">{res.restaurantName}</h3>
+                    <RatingStars rating={res.rating} />
+                  </div>
+                  
+                  <p className="text-gray-600 text-sm">{res.description}</p>
+                  
+                  <div className="flex justify-between items-center text-sm text-gray-600">
+                    <span>{res.address}</span>
+                    <span className="italic">Order Time</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center pt-3">
+                    <span className="text-sm font-medium text-gray-700">Delivery Free</span>
+                    <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )
+        }
+      </div>
+    </div>
 
-//   <div className="flex flex-col gap-6 bg-green-100 p-4 rounded-lg">
-//     <h1 className="text-xl font-semibold text-green-900">Nearest Restaurants</h1>
-//     <div className="flex flex-wrap justify-start gap-5">
-//       {nearestres.length === 0 ? (
-//         <div>No Near Restaurant found</div>
-//       ) : (
-//         nearestres.map((res, index) => (
-//           <div key={index} className="w-full sm:w-[260px] rounded-xl bg-yellow-50 shadow hover:shadow-md">
-//             <img src={res.img} alt="pic" className="rounded-t-xl w-full h-[160px] object-cover" />
-//             <div className="flex flex-col gap-2 px-4 py-5">
-//               <div className="flex justify-between items-center">
-//                 <h1 className="font-bold text-gray-800">{res.restaurantName}</h1>
-//                 <h1 className="text-yellow-500">{res.rating}</h1>
-//               </div>
-//               <p className="text-sm text-gray-700 line-clamp-3">{res.description}</p>
-//               <div className="flex justify-between text-sm">
-//                 <p className="text-gray-600">{res.address}</p>
-//                 <p className="text-gray-500">Time taken</p>
-//               </div>
-//               <div className="flex justify-between items-center">
-//                 <p className="text-gray-600">Delivery Free</p>
-//                 <button className="px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition">
-//                   View Details
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         ))
-//       )}
-//     </div>
-//   </div>
-// </div>
+  </div>
+)
 
-//   );
 
 }
 
