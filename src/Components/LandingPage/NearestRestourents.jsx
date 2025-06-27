@@ -1,13 +1,17 @@
 
 import { useState,useEffect } from "react";
 import RatingStars from "../RatingStars";
+import { useNavigate } from "react-router-dom";
 
  
 function NearestRestourents() {
 
      const BASE_URL = "http://localhost:8000/app";
+     const role=localStorage.getItem('role')
+     console.log("the role is: "+role)
 
-  const [nearestres, setNearestres] = useState([]);
+    const navigate=useNavigate()
+  const [nearestres, setNearestres] = useState([])
   console.log(nearestres)
 
   const [coords, setCoords] = useState({ latitude: null, longitude: null });
@@ -70,6 +74,14 @@ const getNearestres = async (latitude, longitude) => {
       getNearestres(coords.latitude, coords.longitude);
     }
   }, [coords.latitude, coords.longitude]);
+
+  const VisitProfile = async (res) => {
+  if (role === "customer" || role === "owner" || role === "admin") {
+    navigate('/RestaurantProfile', { state: { res } });
+  } else {
+    navigate('/Login');
+  }
+};
 
 
   // Render loading or error state
@@ -197,7 +209,8 @@ return (
                   
                   <div className="flex justify-between items-center pt-3">
                     <span className="text-sm font-medium text-gray-700">Delivery Free</span>
-                    <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all">
+                 
+                    <button onClick={()=>{VisitProfile(res)}}  className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all">
                       View Details
                     </button>
                   </div>
