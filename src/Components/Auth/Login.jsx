@@ -45,6 +45,7 @@ function Login() {
         if (response.ok) {
           alert('✅ Login Successfully!');
           console.log(data)
+          localStorage.setItem('token',data.token)
           localStorage.setItem('name',data.user.name)
           localStorage.setItem('email',data.user.email)
           localStorage.setItem('role', data.user.role)
