@@ -20,6 +20,7 @@ import Analytics from './Components/Admin Section/Analysis';
 import RestaurantsManagement from './Components/Admin Section/RestaurantsManagement';
 import UserManagement from './Components/Admin Section/UserManagement';
 import OrdersManagement from './Components/Admin Section/OrdersManagement';
+import Main from './Components/LandingPage/Main';
 
 
 function App() {
@@ -28,13 +29,14 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
-        
-        {/* Customer Routing */}
+        <Route path="/" element={<Main />} >
+        <Route index element={<Landing/>}/>
         <Route path='/CustomerFav' element={<Cart/>}/>
         <Route path='/CustomerOrders' element={<MyOrders/>}/>
+        <Route path="/Register" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
+        </Route>
+        
 
         {/* Owner Routing */}
         <Route path='/OwnerDashboard' element={<OwnerDashboard/>}>

@@ -7,7 +7,6 @@ import Feedback from './Feedback'
 function Landing() {
   return (
     <div>
-      <Navbar/>
       <LandingBanners/>
       <NearestRestourents/>
       <FoodCategory/>

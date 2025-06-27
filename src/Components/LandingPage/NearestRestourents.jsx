@@ -185,7 +185,7 @@ return (
                   
                   <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-gray-800">{res.restaurantName}</h3>
-                    <RatingStars rating={res.rating} />
+                    <RatingStars rating={res.rating} /> 
                   </div>
                   
                   <p className="text-gray-600 text-sm">{res.description}</p>
