@@ -46,7 +46,7 @@ function NearestRestourents() {
 const getNearestres = async (latitude, longitude) => {
 
     try {
-      const response = await fetch(`${BASE_URL}/nearby?latitude=${latitude}&longitude=${longitude}`, {
+      const response = await fetch(`${BASE_URL}/nearby?latitude=${33.5743}&longitude=${71.4659}`, {
         method: "GET",
         headers: {
       "Content-Type": "application/json",
