@@ -15,7 +15,7 @@ function AddRestaurant() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
-  const coordinates = [longitude, latitude];
+  const coordinates = {longitude, latitude};
 
   const locationIcon = new L.Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/2776/2776067.png",

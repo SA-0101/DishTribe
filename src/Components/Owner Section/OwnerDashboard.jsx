@@ -1,7 +1,10 @@
 import { User } from 'lucide-react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 function OwnerDashboard() {
+
+  const navigate=useNavigate()
+
   return (
     <div className='flex'>
             <div className='flex flex-col max-h-lvh min-w-fit shadow-sm sticky top-0'>
@@ -57,8 +60,11 @@ function OwnerDashboard() {
   <hr className='border border-black px-4' />
 
   <div className='w-full flex flex-col items-center gap-2 px-3 py-4'>
-    <button className='w-full bg-gray-100 rounded-lg py-2'>Home</button>
-    <button className='w-full bg-red-500 rounded-lg py-2'>Logout</button>
+    <NavLink className="w-full" to="/">
+            <button className='w-full bg-gray-100 rounded-lg py-2 cursor-pointer'>Home</button>
+    </NavLink>
+    
+    <button onClick={()=>{localStorage.removeItem('name'),localStorage.removeItem('email'),localStorage.removeItem('role'),navigate("/")}} className='w-full bg-red-500 rounded-lg py-2 cursor-pointer'>Logout</button>
   </div>
 
   <hr className='w-full border border-black px-4' />
