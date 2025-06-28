@@ -23,6 +23,7 @@ import Analytics from './Components/Admin Section/Analysis';
 import RestaurantsManagement from './Components/Admin Section/RestaurantsManagement';
 import UserManagement from './Components/Admin Section/UserManagement';
 import OrdersManagement from './Components/Admin Section/OrdersManagement';
+import UpdateRes from './Components/Owner Section/UpdateRes';
 
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path='/OwnerDashboard' element={<OwnerDashboard/>}>
 
         <Route index element={<MyRestaurants/>}/>
+        <Route path='UpdateRestaurent' element={<UpdateRes/>}/>
         <Route path='AddRestaurant' element={<AddRestaurant/>}/>
         <Route path='AddFood' element={<AddFood/>}/>
         <Route path='OrderManagement' element={<OrderManagement/>}/>

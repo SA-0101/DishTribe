@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import RatingStars from "../RatingStars";
 import { useEffect, useState } from "react";
 
@@ -9,8 +9,10 @@ function ResProfile() {
   const res=location.state.res || {}
   const resid=res._id
   const token=localStorage.getItem('token')
+  const role=localStorage.getItem('role')
   const [menu,setMenu]=useState([])
   const [feedback,setFeedback]=useState([])
+  const navigate=useNavigate()
 
   const getMenu = async (resid) => {
 
@@ -27,7 +29,7 @@ function ResProfile() {
       const responsedata = await response.json();
 
       if (response.ok) {
-        alert("API Fetched")
+       
         setMenu(responsedata.foods);
         console.log(responsedata)
       } else {
@@ -53,7 +55,7 @@ function ResProfile() {
       const responsedata = await response.json();
 
       if (response.ok) {
-        alert("API Fetched")
+       
         setFeedback(responsedata.feedbacks);
         console.log(responsedata)
       } else {
@@ -68,6 +70,29 @@ function ResProfile() {
     getMenu(resid),
     getFeedback(resid)
   },[])
+
+  const deleteRes = async (res) => {
+  try {
+    const response = await fetch(`${BASE_URL}/deleteRestaurant/${res._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const responsedata = await response.json();
+
+    if (response.ok) {
+      console.log("Restaurent deleted successfully");
+      navigate('/')
+    } else {
+      console.log(responsedata.message);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
 
 
@@ -100,6 +125,15 @@ function ResProfile() {
         <p className="text-base text-gray-600">{res.status}</p>
       </div>
     </div>
+    {
+          role=="owner"? 
+          <div className="flex items-end justify-end gap-5 px-5">
+            <button onClick={()=>{ navigate('/OwnerDashboard/UpdateRestaurent', {state :{res}})}} className="px-3 py-2 bg-orange-400 rounded-lg cursor-pointer">Update Restaurent</button>
+            <button onClick={()=>{deleteRes(res)}} className="px-3 py-2 bg-red-500 rounded-lg cursor-pointer">Delete Restaurent</button>
+          </div> 
+          :
+          null
+    }
   </div>
 
   {/* Menu Section */}
