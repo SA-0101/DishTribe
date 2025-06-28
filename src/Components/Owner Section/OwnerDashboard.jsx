@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 function OwnerDashboard() {
   return (
     <div className='flex'>
-            <div className='flex flex-col min-h-lvh min-w-fit shadow-sm'>
+            <div className='flex flex-col max-h-lvh min-w-fit shadow-sm sticky top-0'>
   <div className='flex justify-center items-center gap-4 px-8 py-4 bg-green-100'>
     <User size={50} />
     <div className='flex flex-col items-center'>
