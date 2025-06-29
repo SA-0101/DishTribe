@@ -41,14 +41,14 @@ function AdminDashboard() {
       </div>
     </NavLink>
 
-    <NavLink to="AddRestaurant">
+    <NavLink to="RestaurantManagement">
       <div className='w-full flex flex-row gap-4 px-4 py-2 rounded-lg font-semibold bg-gray-100'>
         <h1>🍽️</h1>
         <button>Restaurants Management</button>
       </div>
     </NavLink>
 
-    <NavLink to="AddFood">
+    <NavLink to="UserManagement">
       <div className='w-full flex flex-row gap-4 px-4 py-2 rounded-lg font-semibold bg-gray-100'>
         <h1>👤</h1>
         <button>User Management</button>
