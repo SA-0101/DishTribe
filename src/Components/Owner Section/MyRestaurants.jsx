@@ -11,7 +11,7 @@ function MyRestaurants() {
 
       const navigate=useNavigate()
 
-      const getOwnerRes = async () => {
+  const getOwnerRes = async () => {
 
     try {
       const response = await fetch(`${BASE_URL}/getRestaurant`, {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function RestaurantsManagement() {
+function Analytics() {
   const BASE_URL = "http://localhost:8000/app";
   const [searchterm, setSearchterm] = useState("");
   const token = localStorage.getItem("token");
@@ -58,9 +58,9 @@ function RestaurantsManagement() {
 
       const responsedata = await response.json();
       if (response.ok) {
-        
+        alert("u")
         getOwnerRes();
-       
+        console.log(responsedata)
       } else {
         console.log(responsedata.message);
       }
@@ -152,4 +152,4 @@ function RestaurantsManagement() {
   );
 }
 
-export default RestaurantsManagement;
+export default Analytics;

@@ -19,7 +19,7 @@ import AddFood from './Components/Owner Section/AddFood';
 import OrderManagement from './Components/Owner Section/OrderManagement';
 
 import AdminDashboard from './Components/Admin Section/AdminDashboard';
-import Analytics from './Components/Admin Section/Analysis';
+import Analytics from './Components/Admin Section/Analytics';
 import RestaurantsManagement from './Components/Admin Section/RestaurantsManagement';
 import UserManagement from './Components/Admin Section/UserManagement';
 import OrdersManagement from './Components/Admin Section/OrdersManagement';
