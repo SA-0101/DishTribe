@@ -114,8 +114,8 @@ function Analytics() {
             <div className="bg-green-300 w-full h-28">Monthly Revenue Trends</div>
 
             {/* Order Status Div */}
-            <div className="bg-indigo-300 w-full h-28">
-
+            <div className="bg-indigo-300 w-full flex flex-col items-center justify-center py-2">
+                  <h1 className="text-xl font-semibold">Order Status Distribution</h1>
                 <div>
                     {/* You can have inputs here to change values if you want */}
                     <OrderStatusPieChart

@@ -41,8 +41,7 @@ const OrderStatusPieChart = ({ total, delivered, pending }) => {
   };
 
   return (
-    <div style={{ maxWidth: '450px', margin: '20px auto' }}>
-      <h3>Order Status Pie Chart</h3>
+    <div style={{ maxWidth: '250px', margin: '20px auto' }}>
       <Pie data={data} options={options} />
     </div>
   );
