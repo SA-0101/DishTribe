@@ -42,7 +42,7 @@ function Analytics() {
 
   return (
     <div className="w-full bg-blue-50 min-h-screen px-4 py-6">
-      <div className="max-w-7xl mx-auto bg-gray-100 px-6 py-6 rounded-xl shadow-md space-y-6">
+      <div className="max-w-7xl mx-auto bg-gray-100 px-8 py-6 rounded-xl shadow-md space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white px-6 py-4 rounded-lg shadow">
           <div className="flex items-center gap-4">
@@ -111,30 +111,58 @@ function Analytics() {
         </div>
 
           {/* Monthly Trend Div */}
-            <div className="bg-green-300 w-full h-28">Monthly Revenue Trends</div>
-
-            {/* Order Status Div */}
-            <div className="w-full flex flex-col items-center justify-center py-2 gap-5">
-              <div className="bg-green-50 w-full flex items-center px-3 gap-3">
-
+            
+            <div className="bg-green-300 w-full flex flex-col px-5 gap-5">
+              <div className="bg-green-50 w-full flex items-center px-3 gap-3 rounded-tr-lg rounded-tl-lg">
                   <div>Icon</div>
                   <div className="flex flex-col gap-1">
-                    <h1>Order Status Distribution</h1>
-                    <h1>Analyze order completion rates</h1>
+                    <h1 className="text-xl font-semibold">Monthly Revenue Trends</h1>
+                    <h1>Track your revenue performance over time</h1>
                   </div>
-
               </div>
-                  <h1 className="text-xl font-semibold">Order Status Distribution</h1>
-                <div>
-                    {/* You can have inputs here to change values if you want */}
-                    <OrderStatusPieChart
-                      total={analyticsdata.totalOrders}
-                      delivered={analyticsdata.deliveredOrders}
-                      pending={analyticsdata.pendingOrders}
-                    />
+              
+                <div className="bg-blue-100 w-full flex flex-col rounded-bl-lg rounded-br-lg">
+
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white px-6 rounded-tr-xl rounded-tl-xl shadow">
+                        <div className="flex items-center gap-4">
+                          <div className="text-blue-500 text-4xl">📦</div>
+                          <div>
+                            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+                            <p className="text-gray-500 text-sm md:text-base">Monitor your business performance and key metrics</p>
+                          </div>
+                        </div>
+                        <h2 className="text-lg font-semibold text-gray-700 mt-4 sm:mt-0">Live Data</h2>
+                   </div>
+
+                    <div className="bg-yellow-50 w-full h-72">
+
+                    </div>
+
                 </div>
 
             </div>
+
+            {/* Order Status Div */}
+            <div className="w-full flex flex-col items-center justify-center px-5 py-2 gap-5 shadow-lg rounded-md bg-white">
+  <div className="bg-green-50 w-full flex items-center gap-3">
+    <div>Icon</div>
+    <div className="flex flex-col gap-1">
+      <h1 className="text-xl font-semibold">Order Status Distribution</h1>
+      <h1>Analyze order completion rates</h1>
+    </div>
+  </div>
+
+  <div className="bg-blue-100 w-full flex flex-col py-5">
+    <h1 className="text-xl font-semibold">Order Status Distribution</h1>
+    {/* You can have inputs here to change values if you want */}
+    <OrderStatusPieChart
+      total={analyticsdata.totalOrders}
+      delivered={analyticsdata.deliveredOrders}
+      pending={analyticsdata.pendingOrders}
+    />
+  </div>
+</div>
+
 
         </div>
     </div>
