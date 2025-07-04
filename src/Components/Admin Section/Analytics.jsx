@@ -4,29 +4,17 @@ function Analytics() {
 
   const BASE_URL = "http://localhost:8000/app";
   const token = localStorage.getItem("token");
-  const [resdata, setresdata] = useState([]);
-  const [userdata,setuserdata]=useState([])
-  const [orderdata,setorderdata]=useState([])
+  const [analyticsdata,setAnalyticsdata]=useState([])
+  console.log(analyticsdata)
   
-
-  {/* User Cards filters */}
-   const customers = userdata.filter((user) => user.role === "customer");
-  const owners = userdata.filter((user) => user.status === "owner");
-
-
-  {/* Orders Cards filters */}
-
-  const Delivered = orderdata.filter((order) => order.status === "Delivered");
-  const Pending = orderdata.filter((order) => order.status === "Pending");
   
-  {/* Calculating Revenue of Delivered Orders */}
-  let Revenue=Delivered.reduce((acc,val)=> acc+val.total,0)
+  // {/* Calculating Revenue of Delivered Orders */}
+  // let Revenue=Delivered.reduce((acc,val)=> acc+val.total,0)
 
-
-    {/* Users API Call */}
-  const getAllusers = async () => {
+  {/*Analytics API Call */}
+  const getAnalyticsdata = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/getAllUsers`, {
+      const response = await fetch(`${BASE_URL}/admin/analytics`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -36,52 +24,8 @@ function Analytics() {
 
       const responsedata = await response.json();
       if (response.ok) {
-        setuserdata(responsedata.users);
-      } else {
-        alert(responsedata.message);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  {/* Orders API Call */}
-    const getAllorders = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/getAllOrder`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responsedata = await response.json();
-      if (response.ok) {
-        setorderdata(responsedata.orders);
-      } else {
-        alert(responsedata.message);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-
-  {/*Restaurent API Call */}
-  const getAllRes = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/getAllRestaurants`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responsedata = await response.json();
-      if (response.ok) {
-        setresdata(responsedata.restaurants);
+        setAnalyticsdata(responsedata);
+        
       } else {
         alert(responsedata.message);
       }
@@ -91,9 +35,7 @@ function Analytics() {
   };
 
   useEffect(() => {
-    getAllusers();
-    getAllorders();
-    getAllRes();
+    getAnalyticsdata();
   }, []);
   
 
@@ -114,38 +56,57 @@ function Analytics() {
 
         {/* Status Cards */}
         {/* User Cards */}
+        
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {[
-            { label: "Total Users", count: userdata.length, color: "bg-blue-200" },
-            { label: "Customers", count: customers.length, color: "bg-green-200" },
-            { label: "Owners", count: owners.length, color: "bg-yellow-200" },
-            { label: "Restaurents", count: resdata.length, color: "bg-red-200" },
-          ].map((item, idx) => (
-            <div key={idx} className={`p-4 rounded-lg shadow-sm flex flex-col items-center ${item.color}`}>
-              <h1 className="text-lg font-semibold">{item.label}</h1>
-              <span className="text-xl font-bold">{item.count}</span>
+            {/* Card 1 */}
+            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
+              <h1 className="text-lg font-semibold">Total Users</h1>
+              <span className="text-xl font-bold">{analyticsdata.totalUsers}</span>
             </div>
-          ))}
+
+             {/* Card 2 */}
+            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
+              <h1 className="text-lg font-semibold">Customers</h1>
+              <span className="text-xl font-bold">{analyticsdata.totalCustomers}</span>
+            </div>
+
+             {/* Card 3 */}
+            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
+              <h1 className="text-lg font-semibold">Owners</h1>
+              <span className="text-xl font-bold">{analyticsdata.totalOwners}</span>
+            </div>
+
+             {/* Card 4 */}
+            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
+              <h1 className="text-lg font-semibold">Restaurents</h1>
+              <span className="text-xl font-bold">{analyticsdata.totalRestaurants}</span>
+            </div>
+          
         </div>
 
           {/* Order Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {[
-            { label: "Total Orders", count: orderdata.length, color: "bg-blue-200" },
-            { label: "Delivered", count: Delivered.length, color: "bg-green-200" },
-            { label: "Pending", count: Pending.length, color: "bg-yellow-200" },
-           
-          ].map((item, idx) => (
-            <div key={idx} className={`p-4 rounded-lg shadow-sm flex flex-col items-center ${item.color}`}>
-              <h1 className="text-lg font-semibold">{item.label}</h1>
-              <span className="text-xl font-bold">{item.count}</span>
+          
+            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
+              <h1 className="text-lg font-semibold">Total Orders</h1>
+              <span className="text-xl font-bold">{analyticsdata.totalOrders}</span>
             </div>
-          ))}
-          {/* Revenue */}
-          <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center bg-red-200`}>
-              <h1 className="text-lg font-semibold">Revenue (Delivered)</h1>
-              <span className="text-xl font-bold">$ {Revenue}</span>
+
+             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
+              <h1 className="text-lg font-semibold">Delivered Orders</h1>
+              <span className="text-xl font-bold">{analyticsdata.deliveredOrders}</span>
             </div>
+
+             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
+              <h1 className="text-lg font-semibold">Pending Orders</h1>
+              <span className="text-xl font-bold">{analyticsdata.pendingOrders}</span>
+            </div>
+
+             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
+              <h1 className="text-lg font-semibold">Revenue(Delivered)</h1>
+              <span className="text-xl font-bold">${analyticsdata.totalRevenue}</span>
+            </div>
+          
         </div>
 
           {/* Monthly Trend Div */}
