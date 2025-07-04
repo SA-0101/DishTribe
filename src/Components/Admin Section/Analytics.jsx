@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import OrderStatusPieChart from "./OrderStatusPieChart";
+import RevenueBar from "./RevenueBar";
 
 function Analytics() {
-
   const BASE_URL = "http://localhost:8000/app";
   const token = localStorage.getItem("token");
-  const [analyticsdata,setAnalyticsdata]=useState([])
-  console.log(analyticsdata)
-  
-  
-  // {/* Calculating Revenue of Delivered Orders */}
-  // let Revenue=Delivered.reduce((acc,val)=> acc+val.total,0)
+  const [analyticsdata, setAnalyticsdata] = useState([]);
 
-  {/*Analytics API Call */}
   const getAnalyticsdata = async () => {
     try {
       const response = await fetch(`${BASE_URL}/admin/analytics`, {
@@ -26,7 +20,6 @@ function Analytics() {
       const responsedata = await response.json();
       if (response.ok) {
         setAnalyticsdata(responsedata);
-        
       } else {
         alert(responsedata.message);
       }
@@ -38,13 +31,12 @@ function Analytics() {
   useEffect(() => {
     getAnalyticsdata();
   }, []);
-  
 
   return (
     <div className="w-full bg-blue-50 min-h-screen px-4 py-6">
-      <div className="max-w-7xl mx-auto bg-gray-100 px-8 py-6 rounded-xl shadow-md space-y-6">
+      <div className="max-w-7xl mx-auto bg-gray-100 px-6 py-6 rounded-xl shadow space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white px-6 py-4 rounded-lg shadow">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white px-6 py-5 rounded-lg shadow">
           <div className="flex items-center gap-4">
             <div className="text-blue-500 text-4xl">📦</div>
             <div>
@@ -55,116 +47,70 @@ function Analytics() {
           <h2 className="text-lg font-semibold text-gray-700 mt-4 sm:mt-0">Live Data</h2>
         </div>
 
-        {/* Status Cards */}
-        {/* User Cards */}
-        
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {/* Card 1 */}
-            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
-              <h1 className="text-lg font-semibold">Total Users</h1>
-              <span className="text-xl font-bold">{analyticsdata.totalUsers}</span>
+        {/* User Cards (Flex) */}
+        <div className="flex flex-wrap justify-between gap-4">
+          {[
+            { label: "Total Users", value: analyticsdata.totalUsers },
+            { label: "Customers", value: analyticsdata.totalCustomers },
+            { label: "Owners", value: analyticsdata.totalOwners },
+            { label: "Restaurants", value: analyticsdata.totalRestaurants },
+          ].map((item, i) => (
+            <div key={i} className="flex-1 min-w-[150px] bg-white p-4 rounded-lg shadow text-center">
+              <h1 className="text-lg font-semibold text-gray-700">{item.label}</h1>
+              <span className="text-2xl font-bold text-blue-600">{item.value}</span>
             </div>
-
-             {/* Card 2 */}
-            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
-              <h1 className="text-lg font-semibold">Customers</h1>
-              <span className="text-xl font-bold">{analyticsdata.totalCustomers}</span>
-            </div>
-
-             {/* Card 3 */}
-            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
-              <h1 className="text-lg font-semibold">Owners</h1>
-              <span className="text-xl font-bold">{analyticsdata.totalOwners}</span>
-            </div>
-
-             {/* Card 4 */}
-            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center `}>
-              <h1 className="text-lg font-semibold">Restaurents</h1>
-              <span className="text-xl font-bold">{analyticsdata.totalRestaurants}</span>
-            </div>
-          
+          ))}
         </div>
 
-          {/* Order Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          
-            <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
-              <h1 className="text-lg font-semibold">Total Orders</h1>
-              <span className="text-xl font-bold">{analyticsdata.totalOrders}</span>
+        {/* Order Cards (Flex) */}
+        <div className="flex flex-wrap justify-between gap-4">
+          {[
+            { label: "Total Orders", value: analyticsdata.totalOrders },
+            { label: "Delivered Orders", value: analyticsdata.deliveredOrders },
+            { label: "Pending Orders", value: analyticsdata.pendingOrders },
+            { label: "Revenue (Delivered)", value: `$${analyticsdata.totalRevenue}` },
+          ].map((item, i) => (
+            <div key={i} className="flex-1 min-w-[150px] bg-white p-4 rounded-lg shadow text-center">
+              <h1 className="text-lg font-semibold text-gray-700">{item.label}</h1>
+              <span className="text-2xl font-bold text-green-600">{item.value}</span>
             </div>
-
-             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
-              <h1 className="text-lg font-semibold">Delivered Orders</h1>
-              <span className="text-xl font-bold">{analyticsdata.deliveredOrders}</span>
-            </div>
-
-             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
-              <h1 className="text-lg font-semibold">Pending Orders</h1>
-              <span className="text-xl font-bold">{analyticsdata.pendingOrders}</span>
-            </div>
-
-             <div className={`p-4 rounded-lg shadow-sm flex flex-col items-center`}>
-              <h1 className="text-lg font-semibold">Revenue(Delivered)</h1>
-              <span className="text-xl font-bold">${analyticsdata.totalRevenue}</span>
-            </div>
-          
+          ))}
         </div>
 
-          {/* Monthly Trend Div */}
-            
-            <div className="bg-green-300 w-full flex flex-col px-5 gap-5">
-              <div className="bg-green-50 w-full flex items-center px-3 gap-3 rounded-tr-lg rounded-tl-lg">
-                  <div>Icon</div>
-                  <div className="flex flex-col gap-1">
-                    <h1 className="text-xl font-semibold">Monthly Revenue Trends</h1>
-                    <h1>Track your revenue performance over time</h1>
-                  </div>
-              </div>
-              
-                <div className="bg-blue-100 w-full flex flex-col rounded-bl-lg rounded-br-lg">
-
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white px-6 rounded-tr-xl rounded-tl-xl shadow">
-                        <div className="flex items-center gap-4">
-                          <div className="text-blue-500 text-4xl">📦</div>
-                          <div>
-                            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Admin Dashboard</h1>
-                            <p className="text-gray-500 text-sm md:text-base">Monitor your business performance and key metrics</p>
-                          </div>
-                        </div>
-                        <h2 className="text-lg font-semibold text-gray-700 mt-4 sm:mt-0">Live Data</h2>
-                   </div>
-
-                    <div className="bg-yellow-50 w-full h-72">
-
-                    </div>
-
-                </div>
-
+        {/* Monthly Revenue Trends */}
+        <div className="flex flex-col bg-green-100 rounded-lg overflow-hidden">
+          <div className="flex items-center gap-4 bg-green-200 px-5 py-4">
+            <div>📊</div>
+            <div>
+              <h1 className="text-xl font-semibold">Monthly Revenue Trends</h1>
+              <p className="text-sm text-gray-600">Track your revenue performance over time</p>
             </div>
+          </div>
 
-            {/* Order Status Div */}
-            <div className="w-full flex flex-col items-center justify-center px-5 py-2 gap-5 shadow-lg rounded-md bg-white">
-  <div className="bg-green-50 w-full flex items-center gap-3">
-    <div>Icon</div>
-    <div className="flex flex-col gap-1">
-      <h1 className="text-xl font-semibold">Order Status Distribution</h1>
-      <h1>Analyze order completion rates</h1>
-    </div>
-  </div>
-
-  <div className="bg-blue-100 w-full flex flex-col py-5">
-    <h1 className="text-xl font-semibold">Order Status Distribution</h1>
-    {/* You can have inputs here to change values if you want */}
-    <OrderStatusPieChart
-      total={analyticsdata.totalOrders}
-      delivered={analyticsdata.deliveredOrders}
-      pending={analyticsdata.pendingOrders}
-    />
-  </div>
-</div>
-
-
+          <div className="bg-white px-4 py-6">
+            <RevenueBar data={analyticsdata.monthlyRevenue} />
+          </div>
         </div>
+
+        {/* Order Status Pie Chart */}
+        <div className="flex flex-col bg-white rounded-md shadow-lg p-5">
+          <div className="flex items-center gap-4 bg-green-50 px-4 py-3 rounded-md mb-4">
+            <div>📈</div>
+            <div>
+              <h1 className="text-xl font-semibold">Order Status Distribution</h1>
+              <p className="text-sm text-gray-600">Analyze order completion rates</p>
+            </div>
+          </div>
+
+          <div className="bg-blue-100 w-full px-4 py-5 rounded-md">
+            <OrderStatusPieChart
+              total={analyticsdata.totalOrders}
+              delivered={analyticsdata.deliveredOrders}
+              pending={analyticsdata.pendingOrders}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
