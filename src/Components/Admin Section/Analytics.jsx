@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import OrderStatusPieChart from "./OrderStatusPieChart";
 
 function Analytics() {
 
@@ -113,7 +114,18 @@ function Analytics() {
             <div className="bg-green-300 w-full h-28">Monthly Revenue Trends</div>
 
             {/* Order Status Div */}
-            <div className="bg-indigo-300 w-full h-28">Order Status Distribution</div>
+            <div className="bg-indigo-300 w-full h-28">
+
+                <div>
+                    {/* You can have inputs here to change values if you want */}
+                    <OrderStatusPieChart
+                      total={analyticsdata.totalOrders}
+                      delivered={analyticsdata.deliveredOrders}
+                      pending={analyticsdata.pendingOrders}
+                    />
+                </div>
+
+            </div>
 
         </div>
     </div>
