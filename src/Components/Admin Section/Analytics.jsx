@@ -114,7 +114,16 @@ function Analytics() {
             <div className="bg-green-300 w-full h-28">Monthly Revenue Trends</div>
 
             {/* Order Status Div */}
-            <div className="bg-indigo-300 w-full flex flex-col items-center justify-center py-2">
+            <div className="w-full flex flex-col items-center justify-center py-2 gap-5">
+              <div className="bg-green-50 w-full flex items-center px-3 gap-3">
+
+                  <div>Icon</div>
+                  <div className="flex flex-col gap-1">
+                    <h1>Order Status Distribution</h1>
+                    <h1>Analyze order completion rates</h1>
+                  </div>
+
+              </div>
                   <h1 className="text-xl font-semibold">Order Status Distribution</h1>
                 <div>
                     {/* You can have inputs here to change values if you want */}
