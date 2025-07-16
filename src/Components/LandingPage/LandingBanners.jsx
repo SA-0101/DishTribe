@@ -1,108 +1,104 @@
-// import FoodImg from '../../../src/assets/Food pic1.jpg'
-// import FoodBg from '../../../src/assets/FoodBG.jpg'
-
-// function LandingBanners() {
-//   return (
-//     <div className='px-[100px] py-[60px] flex justify-between gap-10 bg-orange-100 bg-cover bg-center' style={{ backgroundImage: `url(${FoodBg})`}}>
-    
-//         <div className='flex flex-col gap-8 items-start'>
-//           <button className='bg-white px-3 py-2 rounded-3xl font-semibold'>Fast Delivery</button>
-//           <h1 className='text-5xl font-bold'>Delicious Food Delivered</h1>
-//           <h1 className='text-2xl font-semibold'>Find the best restaurants near you</h1>
-//           <h1 className='text-xl font-semibold'>Order from your favorite local restaurants and get fresh, hot meals delivered to your doorstep in minutes.</h1>
-//           <div className='flex gap-4'>
-//             <button className='bg-white px-4 py-2 rounded-lg font-semibold'>Order Now</button>
-//             <button className='px-3 py-2 rounded-lg font-semibold border-4 border-white'>View Menu</button>
-//           </div>
-//           <div>
-//           <div className='flex gap-5'>
-//             <div className='flex flex-col items-center gap-1'>
-//               <h1 className='text-lg font-semibold'>500+</h1>
-//               <h1>Restaurants</h1>
-//             </div>
-//             <div className='flex flex-col items-center gap-1'>
-//               <h1 className='text-lg font-semibold'> 30Min</h1>
-//               <h1>Average Delivery</h1>
-//             </div>
-//             <div className='flex flex-col items-center gap-1'>
-//               <h1 className='text-lg font-semibold'>4.8 start</h1>
-//               <h1>Rating</h1>
-//             </div>
-//             </div>
-            
-//           </div>
-//           </div>
-//         <div className='flex justify-center items-center'>
-//           <img className='rounded-xl h-[350px] bg-transparent' src={FoodImg} alt="Food Image" />
-//         </div>
-
-//     </div>
-//   )
-// }
-
-// export default LandingBanners
-
-
-import FoodImg from '../../../src/assets/Food pic1.jpg';
-import FoodBg from '../../../src/assets/FoodBG.jpg';
+import FoodImg from '../../../src/assets/Food pic1.jpg'
+import FoodBg from '../../../src/assets/FoodBG.jpg'
 
 function LandingBanners() {
   return (
-    <div
-      className="bg-cover bg-center"
-      style={{ backgroundImage: `url(${FoodBg})` }}
-    >
-      <div className="px-6 sm:px-10 lg:px-24 py-12 flex flex-col-reverse lg:flex-row items-center gap-10 bg-orange-100/80 backdrop-blur-sm">
-        {/* Left Content */}
-        <div className="flex flex-col gap-6 items-start max-w-2xl">
-          <button className="bg-white text-orange-600 px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-100 transition">
+    <div className='relative px-8 md:px-16 lg:px-24 py-12 flex flex-col lg:flex-row justify-between items-center gap-8 bg-gray-50 overflow-hidden'>
+      
+      {/* Background with overlay */}
+      <div className='absolute inset-0 bg-gray-900/10'></div>
+      
+      <div className='relative z-10 flex flex-col gap-6 items-start max-w-2xl'>
+        
+        {/* Fast Delivery Badge */}
+        <div className='inline-flex'>
+          <span className='bg-blue-600 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-sm'>
             Fast Delivery
-          </button>
-          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-orange-900">
-            Delicious Food Delivered
+          </span>
+        </div>
+
+        {/* Main Headlines */}
+        <div className='space-y-4'>
+          <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight'>
+            <span className='text-blue-600'>Delicious Food</span>
+            <br />
+            <span className='text-gray-900'>Delivered</span>
           </h1>
-          <h2 className="text-xl sm:text-2xl font-semibold text-orange-800">
+          
+          <h2 className='text-xl md:text-2xl font-semibold text-gray-700'>
             Find the best restaurants near you
           </h2>
-          <p className="text-base sm:text-lg text-orange-700">
+          
+          <p className='text-base md:text-lg text-gray-600 leading-relaxed max-w-xl'>
             Order from your favorite local restaurants and get fresh, hot meals delivered to your doorstep in minutes.
           </p>
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-white text-orange-500 font-semibold px-6 py-2 rounded-lg shadow hover:shadow-lg transition">
-              Order Now
-            </button>
-            <button className="px-6 py-2 rounded-lg font-semibold border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition">
-              View Menu
-            </button>
-          </div>
-          <div className="flex gap-6 pt-4 text-orange-900">
-            <div className="flex flex-col items-center text-center">
-              <h1 className="text-xl font-bold">500+</h1>
-              <p className="text-sm">Restaurants</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h1 className="text-xl font-bold">30 Min</h1>
-              <p className="text-sm">Avg Delivery</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <h1 className="text-xl font-bold">4.8 ⭐</h1>
-              <p className="text-sm">Rating</p>
-            </div>
-          </div>
         </div>
 
-        {/* Right Image */}
-        <div className="flex justify-center items-center">
-          <img
-            className="rounded-xl w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] object-cover shadow-lg"
-            src={FoodImg}
-            alt="Delicious Food"
-          />
+        {/* Action Buttons */}
+        <div className='flex flex-col sm:flex-row gap-4 w-full sm:w-auto'>
+          <button className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-sm transition-colors duration-200'>
+            Order Now
+          </button>
+          <button className='bg-white hover:bg-gray-50 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-200'>
+            View Menu
+          </button>
+        </div>
+
+        {/* Stats Section */}
+        <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm w-full max-w-md'>
+          <div className='flex justify-between text-center'>
+            
+            <div className='flex flex-col items-center gap-2'>
+              <div className='bg-blue-100 rounded-full p-3'>
+                <h1 className='text-2xl font-bold text-blue-600'>500+</h1>
+              </div>
+              <h2 className='text-gray-600 font-medium text-sm'>Restaurants</h2>
+            </div>
+            
+            <div className='flex flex-col items-center gap-2'>
+              <div className='bg-green-100 rounded-full p-3'>
+                <h1 className='text-2xl font-bold text-green-600'>30Min</h1>
+              </div>
+              <h2 className='text-gray-600 font-medium text-sm'>Avg Delivery</h2>
+            </div>
+            
+            <div className='flex flex-col items-center gap-2'>
+              <div className='bg-yellow-100 rounded-full p-3'>
+                <h1 className='text-2xl font-bold text-yellow-600'>4.8⭐</h1>
+              </div>
+              <h2 className='text-gray-600 font-medium text-sm'>Rating</h2>
+            </div>
+            
+          </div>
         </div>
       </div>
+
+      {/* Food Image Section */}
+      <div className='relative z-10 flex justify-center items-center'>
+        <div className='relative'>
+          
+          {/* Image container */}
+          <div className='bg-white rounded-xl p-4 border border-gray-200 shadow-sm'>
+            <img 
+              className='rounded-xl h-64 md:h-80 lg:h-96 object-cover' 
+              src={FoodImg} 
+              alt="Food Image" 
+            />
+            
+            {/* Quality badges */}
+            <div className='absolute -top-3 -right-3 bg-red-500 text-white rounded-full px-3 py-1 shadow-sm'>
+              <span className='text-sm font-medium'>Hot</span>
+            </div>
+            
+            <div className='absolute -bottom-3 -left-3 bg-green-500 text-white rounded-full px-3 py-1 shadow-sm'>
+              <span className='text-sm font-medium'>Fresh</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  );
+  )
 }
 
-export default LandingBanners;
-
+export default LandingBanners

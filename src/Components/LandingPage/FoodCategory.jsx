@@ -89,81 +89,119 @@ function FoodCategory() {
       }
 
   return (
-  <div className="flex flex-col gap-10 px-4 md:px-16 py-6">
-    {/* Header */}
-    <div className="flex flex-col items-center gap-3 text-center">
-      <h1 className="text-3xl font-semibold">Food Categories</h1>
-      <p className="text-gray-600">
-        Choose from our delicious vegetarian and non-vegetarian dishes
-      </p>
-    </div>
+  <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
+    <div className="flex flex-col gap-10 px-4 md:px-16 py-8 max-w-7xl mx-auto">
+      {/* Header */}
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">
+          Food Categories
+        </h1>
+        <p className="text-gray-600 text-lg max-w-2xl leading-relaxed">
+          Choose from our delicious vegetarian and non-vegetarian dishes
+        </p>
+      </div>
 
-    {/* Category Buttons */}
-    <div className="flex justify-center gap-4">
-      <button
-        onClick={() => setCategory("veg")}
-        className="px-8 py-3 font-semibold bg-gray-200 rounded-3xl cursor-pointer hover:bg-gray-300"
-      >
-        Vegetarian
-      </button>
-      <button
-        onClick={() => setCategory("non-veg")}
-        className="px-8 py-3 font-semibold bg-red-500 text-white rounded-3xl cursor-pointer hover:bg-red-600"
-      >
-        Non-Vegetarian
-      </button>
-    </div>
-
-    {/* Category Section */}
-    <div className="flex flex-col gap-6">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-        <h2 className="text-2xl font-bold text-gray-800">
-          {category === "veg" ? "Vegetarian Dishes" : "Non Vegetarian Dishes"}
-        </h2>
-        <button className="bg-gray-100 text-sm text-gray-700 rounded-full px-4 py-2 shadow-sm">
-          {Foodcategory.length} items found
+      {/* Category Buttons */}
+      <div className="flex justify-center gap-6">
+        <button
+          onClick={() => setCategory("veg")}
+          className={`px-10 py-4 font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
+            category === "veg"
+              ? "bg-green-500 text-white shadow-green-200"
+              : "bg-white text-gray-700 hover:bg-green-50 border-2 border-green-200"
+          }`}
+        >
+          🥗 Vegetarian
+        </button>
+        <button
+          onClick={() => setCategory("non-veg")}
+          className={`px-10 py-4 font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg ${
+            category === "non-veg"
+              ? "bg-red-500 text-white shadow-red-200"
+              : "bg-white text-gray-700 hover:bg-red-50 border-2 border-red-200"
+          }`}
+        >
+          🍖 Non-Vegetarian
         </button>
       </div>
 
-      {/* Food Cards */}
-      <div className="flex flex-wrap gap-6 justify-start">
-        {Foodcategory.length === 0 ? (
-          <div className="text-gray-500">No Dishes found</div>
-        ) : (
-          Foodcategory.map((Fooditm, index) => (
-            <div
-              key={index}
-              className="w-full sm:w-[240px] md:w-[260px] bg-yellow-50 rounded-xl overflow-hidden shadow hover:shadow-md transition"
-            >
-              <img
-                src={Fooditm.img}
-                alt="pic"
-                className="w-full h-40 object-cover"
-              />
-              <div className="flex flex-col gap-2 px-4 py-4">
-                <h2 className="text-lg font-semibold text-gray-800">
-                  {Fooditm.foodName}
-                </h2>
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {Fooditm.description}
-                </p>
-                <div className="flex justify-between items-center mt-2">
-                  <del className="text-sm text-gray-500">
-                    ${Fooditm.oldPrice}
-                  </del>
-                  <span className="px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-md">
-                    ${Fooditm.newPrice}
-                  </span>
-                </div>
-                {
-                  role=="customer"? <button onClick={()=>{addtocart(Fooditm)}} className="bg-orange-400 py-1 rounded-lg text-white font-semibold cursor-pointer">Add To Cart</button>: 
-                        null }
-               
-              </div>
+      {/* Category Section */}
+      <div className="flex flex-col gap-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <h2 className="text-3xl font-bold text-gray-800">
+            {category === "veg" ? "🌱 Vegetarian Dishes" : "🍗 Non Vegetarian Dishes"}
+          </h2>
+          <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white text-sm font-semibold rounded-full px-6 py-3 shadow-lg">
+            {Foodcategory.length} items found
+          </div>
+        </div>
+
+        {/* Food Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {Foodcategory.length === 0 ? (
+            <div className="col-span-full text-center py-16">
+              <div className="text-gray-400 text-6xl mb-4">🍽️</div>
+              <div className="text-gray-500 text-xl">No Dishes found</div>
             </div>
-          ))
-        )}
+          ) : (
+            Foodcategory.map((Fooditm, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={Fooditm.img}
+                    alt="pic"
+                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                  <div className="absolute top-3 right-3">
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      Fooditm.category === "veg" 
+                        ? "bg-green-100 text-green-800" 
+                        : "bg-red-100 text-red-800"
+                    }`}>
+                      {Fooditm.category === "veg" ? "🌱 Veg" : "🍖 Non-Veg"}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h2 className="text-xl font-bold text-gray-800 mb-3 line-clamp-1">
+                    {Fooditm.foodName}
+                  </h2>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+                    {Fooditm.description}
+                  </p>
+                  
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center gap-2">
+                      <del className="text-gray-400 text-sm">
+                        ${Fooditm.oldPrice}
+                      </del>
+                      <span className="text-2xl font-bold text-orange-600">
+                        ${Fooditm.newPrice}
+                      </span>
+                    </div>
+                    <div className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">
+                      {Math.round(((Fooditm.oldPrice - Fooditm.newPrice) / Fooditm.oldPrice) * 100)}% OFF
+                    </div>
+                  </div>
+                  
+                  {role == "customer" ? (
+                    <button 
+                      onClick={() => {addtocart(Fooditm)}} 
+                      className="w-full bg-gradient-to-r from-orange-400 to-red-400 hover:from-orange-500 hover:to-red-500 text-white font-semibold py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    >
+                      🛒 Add To Cart
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   </div>
